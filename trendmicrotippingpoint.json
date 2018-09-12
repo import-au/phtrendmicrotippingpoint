@@ -1,0 +1,106 @@
+{
+    "appid": "704e577d-fa3d-4cc7-9343-771a0d29c6af",
+    "name": "TrendMicro TippingPoint",
+    "description": "Interface to the SMS API",
+    "type": "virtualization",
+    "product_vendor": "TrendMicro",
+    "logo": "trendmicrotippingpoint.png",
+    "product_name": "TippingPoint SMS",
+    "product_version_regex": ".*",
+    "publisher": "Adam Gold",
+    "license": "Copyright (c), 2018",
+    "app_version": "1.0.0",
+    "utctime_updated": "2018-08-20T16:36:40.414725Z",
+    "package_name": "phantom_trendmicrotippingpoint",
+    "main_module": "trendmicrotippingpoint_connector.pyc",
+    "min_phantom_version": "3.5.210",
+    "app_wizard_version": "1.0.0",
+    "configuration": {
+        "SMS Host Name": {
+            "description": "Host name of the SMS",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "",
+            "order": 0
+        },
+        "SMS User Name": {
+            "description": "User name for the SMS API",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "",
+            "order": 1
+        },
+        "SMS Password": {
+            "description": "Password for SMS API",
+            "data_type": "password",
+            "required": true,
+            "order": 2
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "retrieve pcap",
+            "identifier": "retrieve_pcap",
+            "description": "Retrieve PCAP for an event",
+            "verbose": "",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "event_id": {
+                    "description": "Event ID to retrieve packet capture for",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.event_id",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "event_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        }
+    ]
+}
